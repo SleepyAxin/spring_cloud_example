@@ -1,0 +1,30 @@
+server:
+  port: 12000
+spring:
+  application:
+    name: myshop-config
+  profiles:
+    active: subversion
+  cloud:
+    config:
+      server:
+        svn:
+          uri: https://LAPTOP-CGDR8CIP:8443/svn/springcloud/
+          username: sleepyaxin
+          password: wx20040320
+          default-label: trunk
+  rabbitmq:
+    host: localhost
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8888/eureka
+  instance:
+    prefer-ip-address: true

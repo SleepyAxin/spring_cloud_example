@@ -1,0 +1,27 @@
+server:
+  port: 9002
+spring:   # 服务名称
+  application:
+    name: myshop-web
+  zipkin:
+    base-url: http://localhost:9041
+    sender:
+      type: web
+  sleuth:
+    sampler:
+      probability: 1
+  rabbitmq:
+    host: localhost
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3307/Spring-Axin?characterEncoding=UTF8&useSSL=false&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: wx20040320
+eureka:
+  client:
+    register-with-eureka: true # 作为客户端需要注册到Eureka
+    fetch-registry: true  # 作为客户端需要从Eureka获取注册信息
+    service-url: # 客户端注册地址
+      defaultZone: http://localhost:8888/eureka
+  instance:
+    prefer-ip-address: true # 优先使用该服务的IP地址注册到Eureka，在生产环境建议改为true

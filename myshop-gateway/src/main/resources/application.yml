@@ -1,0 +1,35 @@
+server:
+  port: 8222
+spring:
+  application:
+    name: myshop-gateway
+  zipkin:
+    base-url: http://localhost:9041
+    sender:
+      type: web
+  sleuth:
+    sampler:
+      probability: 1
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8888/eureka
+  instance:
+    prefer-ip-address: true
+# zuul的动态路由配置
+# 注：当转发的路径（path）和 转发的微服务的名称（serviceId）是一致的话，那么可以省略zuul路由配置
+zuul:
+  SendErrorFilter:
+    error:
+      disable: true    # 让zuul预定义的异常过滤器失效
+  routes:
+    myshop-user:
+      path: /myshop-user    # 需要转发的路径
+      serviceId: myshop-user    # 最终转发的微服务（名称）
+    myshop-web:
+      path: /myshop-web    # 需要转发的路径
+      serviceId: myshop-web    # 最终转发的微服务（名称）
+
+
